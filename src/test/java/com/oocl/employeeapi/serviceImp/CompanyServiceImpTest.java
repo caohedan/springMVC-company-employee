@@ -119,7 +119,7 @@ public class CompanyServiceImpTest {
 
         companyServiceImp.addCompany(company);
         // when
-        companyServiceImp.deleteCompanyAndEmployeesById(1);
+        companyServiceImp.deleteCompanyAndEmployeesByCompanyId(1);
         // then
         assertEquals(0, companyServiceImp.getAllCompanies().size());
     }
