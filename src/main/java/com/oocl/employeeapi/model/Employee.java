@@ -10,6 +10,9 @@ public class Employee {
     private int age;
     private String name;
     private String gender;
+    private long companyId;
+
+
 
     public Employee(){}
     public Employee(long _id, int _age, String _name, String _gender){
@@ -49,5 +52,13 @@ public class Employee {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(long companyId) {
+        this.companyId = companyId;
     }
 }

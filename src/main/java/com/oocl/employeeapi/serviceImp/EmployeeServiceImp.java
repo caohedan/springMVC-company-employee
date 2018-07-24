@@ -55,4 +55,14 @@ public class EmployeeServiceImp implements EmployeeService {
     public Employee deleteEmployeeById(long id) {
         return employees.remove(id);
     }
+
+    public List<Employee> getEmployeesByCompanyId(long companyId){
+        List<Employee> result = new ArrayList<>();
+        for(Map.Entry<Long, Employee> entry :employees.entrySet()){
+            if(entry.getValue().getCompanyId() == companyId){
+                result.add(entry.getValue());
+            }
+        }
+        return result;
+    }
 }

@@ -6,9 +6,20 @@ import java.util.List;
 
 @Component
 public class Company {
+
+
+    private long id;
     private String companyName;
     private int employeesNumber;
     private List<Employee> employees;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getCompanyName() {
         return companyName;
