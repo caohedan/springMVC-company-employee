@@ -12,12 +12,12 @@ public class Employee {
     private String gender;
 
     public Employee(){}
-//    public Employee(long _id, int _age, String _name, String _gender){
-//        id = _id;
-//        age = _age;
-//        name = _name;
-//        gender = _gender;
-//    }
+    public Employee(long _id, int _age, String _name, String _gender){
+        id = _id;
+        age = _age;
+        name = _name;
+        gender = _gender;
+    }
 
     public int getAge() {
         return age;

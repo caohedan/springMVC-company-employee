@@ -1,6 +1,7 @@
 package com.oocl.employeeapi.serviceImp;
 import com.oocl.employeeapi.model.Employee;
 import com.oocl.employeeapi.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,10 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("employeeServiceImp")
+@Service("employeeService")
 public class EmployeeServiceImp implements EmployeeService {
     private Map<Long, Employee> employees;
 
+    @Autowired
     public EmployeeServiceImp() {
         employees  = new HashMap<>();
     }
@@ -26,7 +28,7 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     public Employee add(Employee employee){
-        employees.put(employee.getId(),employee);
+        employees.put(employee.getId(), employee);
         return employee;
     }
 

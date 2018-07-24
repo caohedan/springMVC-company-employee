@@ -2,7 +2,6 @@ package com.oocl.employeeapi.controller;
 
 import com.oocl.employeeapi.model.Employee;
 import com.oocl.employeeapi.service.EmployeeService;
-import com.oocl.employeeapi.serviceImp.EmployeeServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,43 +9,44 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
+@RequestMapping("/employees")
 public class EmployeesController {
     @Autowired
-    private EmployeeService employeeServiceImp;
+    private EmployeeService employeeService;
 
     private final AtomicLong counter = new AtomicLong();
 
-    @PostMapping(path="/employees")
+    @PostMapping(path="")
     @ResponseBody
     public Employee addEmployee(@RequestBody Employee employee){
-        return employeeServiceImp.add(employee);
+        Employee emp = new Employee(counter.incrementAndGet(),
+                                    employee.getAge(),
+                                    employee.getName(),
+                                    employee.getGender());
+        return employeeService.add(emp);
     }
-//    public Employee addEmployee(@RequestBody Employee employee) {
-//        return employeeServiceImp.add(new Employee(counter.incrementAndGet(),
-//                employee.getAge(), employee.getName(), employee.getGender()));
-//    }
 
-    @PutMapping(path="/employees/{employeeId}")
+    @PutMapping(path="/{employeeId}")
     @ResponseBody
     public Employee modifyEmployee(@PathVariable long employeeId, @RequestBody Employee employee){
-        return employeeServiceImp.modify(employeeId, employee);
+        return employeeService.modify(employeeId, employee);
     }
 
-    @GetMapping(path = "/employees")
+    @GetMapping(path = "")
     @ResponseBody
     public List<Employee> getAllEmployees(){
-        return employeeServiceImp.getAllEmployees();
+        return employeeService.getAllEmployees();
     }
 
-    @GetMapping(path = "/employees/{employeeId}")
+    @GetMapping(path = "/{employeeId}")
     @ResponseBody
     public Employee getEmployeeById(@PathVariable long employeeId){
-        return employeeServiceImp.getEmployeeById(employeeId);
+        return employeeService.getEmployeeById(employeeId);
     }
 
-    @DeleteMapping(path = "/employees/{id}")
+    @DeleteMapping(path = "/{employeeId}")
     @ResponseBody
-    public Employee deleteEmployeeById(@PathVariable long id) {
-        return employeeServiceImp.deleteEmployeeById(id);
+    public Employee deleteEmployeeById(@PathVariable long employeeId) {
+        return employeeService.deleteEmployeeById(employeeId);
     }
 }
