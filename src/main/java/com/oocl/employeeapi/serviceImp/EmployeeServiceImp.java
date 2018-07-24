@@ -73,7 +73,6 @@ public class EmployeeServiceImp implements EmployeeService {
             if(employee.getGender().equals("male"))
                 employees.add(employee);
         }
-//        return getAllEmployees().stream().filter(u->u.getGender()=="male").collect(Collectors.toList());
         return employees;
     }
 

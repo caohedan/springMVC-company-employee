@@ -30,6 +30,7 @@ public class CompanyServiceImp implements CompanyService {
             Company company = entry.getValue();
             long id = entry.getKey();
             company.setEmployees(employeeService.getEmployeesByCompanyId(id));
+            company.setEmployeesNumber(company.getEmployees().size());
             companies.add(company);
         }
         return companies;
@@ -57,15 +58,15 @@ public class CompanyServiceImp implements CompanyService {
                                     .collect(Collectors.toList());
 
         company.setEmployees(employees);
+        company.setEmployeesNumber(company.getEmployees().size());
         return company;
     }
 
     public List<Employee> getEmployeesByCompanyId(long id){
-        List<Employee> employees = employeeService.getAllEmployees()
+        return employeeService.getAllEmployees()
                 .stream()
                 .filter(u ->u.getCompanyId()==id)
                 .collect(Collectors.toList());
-        return employees;
     }
 
     public Company updateCompany(long id, Company company){
@@ -102,7 +103,7 @@ public class CompanyServiceImp implements CompanyService {
         List<Company> companies = new ArrayList<>();
         for(int i = preNum; i < totalSize && companies.size()<=size; i++){
             companies.add(allCompanies.get(i));
-        }
+    }
 
         return companies;
     }
