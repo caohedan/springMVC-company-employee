@@ -103,4 +103,24 @@ public class CompanyServiceImpTest {
     // then
         assertEquals("bbb", companyServiceImp.getCompanyById((long)1).getCompanyName());
     }
+
+    @Test
+    public void should_delete_the_company_when_call_deleteCompanyAndEmployeesByCompanyId(){
+        // given
+        Employee employee = mock(Employee.class);
+        when(employee.getCompanyId()).thenReturn((long)1);
+        when(employee.getId()).thenReturn((long)0);
+        Company company = mock(Company.class);
+        when(company.getId()).thenReturn((long)1);
+        when(company.getCompanyName()).thenReturn("aaa");
+
+        List<Employee> employees = new ArrayList<>();
+        employees.add(employee);
+
+        companyServiceImp.addCompany(company);
+        // when
+        companyServiceImp.deleteCompanyAndEmployeesById(1);
+        // then
+        assertEquals(0, companyServiceImp.getAllCompanies().size());
+    }
 }

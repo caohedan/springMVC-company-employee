@@ -23,6 +23,18 @@ public class CompanyServiceImp implements CompanyService {
         companyMap = new HashMap<>();
     }
 
+    public List<Company> getAllCompanies(){
+        List<Company> companies = new ArrayList<>();
+        for(Map.Entry<Long, Company> entry: companyMap.entrySet()) {
+            Company company = entry.getValue();
+            long id = entry.getKey();
+            company.setEmployees(employeeService.getEmployeesByCompanyId(id));
+            companies.add(company);
+        }
+
+        return companies;
+    }
+
     public Company addCompany(Company company){
         List<Employee> employees = company.getEmployees();
         long id = company.getId();
@@ -35,17 +47,7 @@ public class CompanyServiceImp implements CompanyService {
         return company;
     }
 
-    public List<Company> getAllCompanies(){
-        List<Company> companies = new ArrayList<>();
-        for(Map.Entry<Long, Company> entry: companyMap.entrySet()) {
-            Company company = entry.getValue();
-            long id = entry.getKey();
-            company.setEmployees(employeeService.getEmployeesByCompanyId(id));
-            companies.add(company);
-        }
 
-        return companies;
-    }
 
     public Company getCompanyById(long id){
         Company company = companyMap.get(id);
@@ -76,5 +78,17 @@ public class CompanyServiceImp implements CompanyService {
         }
 
         return company;
+    }
+
+    public Company deleteCompanyAndEmployeesByCompanyId(long id){
+        List<Long> employeeIds = employeeService.getAllEmployees().stream()
+                                .filter(u->u.getCompanyId()==id)
+                                .map(u->u.getId())
+                                .collect(Collectors.toList());
+        for(Long ids: employeeIds){
+            employeeService.deleteEmployeeById(ids);
+        }
+
+        return companyMap.remove(id);
     }
 }
