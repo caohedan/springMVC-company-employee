@@ -16,4 +16,7 @@ public interface EmployeeService {
 
     Employee deleteEmployeeById(long id);
     List<Employee> getEmployeesByCompanyId(long companyId);
+
+    List<Employee> getMaleEmployees();
+
 }

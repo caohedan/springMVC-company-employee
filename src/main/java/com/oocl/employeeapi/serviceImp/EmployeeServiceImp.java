@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service("employeeService")
 public class EmployeeServiceImp implements EmployeeService {
@@ -64,5 +65,15 @@ public class EmployeeServiceImp implements EmployeeService {
             }
         }
         return result;
+    }
+
+    public List<Employee> getMaleEmployees(){
+        List<Employee> employees = new ArrayList<>();
+        for(Employee employee: getAllEmployees()){
+            if(employee.getGender().equals("male"))
+                employees.add(employee);
+        }
+//        return getAllEmployees().stream().filter(u->u.getGender()=="male").collect(Collectors.toList());
+        return employees;
     }
 }

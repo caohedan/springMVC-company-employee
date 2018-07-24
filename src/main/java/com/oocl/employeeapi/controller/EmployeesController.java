@@ -19,11 +19,11 @@ public class EmployeesController {
     @PostMapping(path="")
     @ResponseBody
     public Employee addEmployee(@RequestBody Employee employee){
-        Employee emp = new Employee(counter.incrementAndGet(),
-                                    employee.getAge(),
-                                    employee.getName(),
-                                    employee.getGender());
-        return employeeService.add(emp);
+//        Employee emp = new Employee(counter.incrementAndGet(),
+//                                    employee.getAge(),
+//                                    employee.getName(),
+//                                    employee.getGender());
+        return employeeService.add(employee);
     }
 
     @PutMapping(path="/{employeeId}")
@@ -48,5 +48,10 @@ public class EmployeesController {
     @ResponseBody
     public Employee deleteEmployeeById(@PathVariable long employeeId) {
         return employeeService.deleteEmployeeById(employeeId);
+    }
+
+    @GetMapping(path="/male")
+    public List<Employee> getMaleEmployees(){
+        return employeeService.getMaleEmployees();
     }
 }
