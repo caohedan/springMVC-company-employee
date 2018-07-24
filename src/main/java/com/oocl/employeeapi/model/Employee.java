@@ -1,4 +1,4 @@
-package com.oocl.employeeapi;
+package com.oocl.employeeapi.model;
 
 import org.springframework.stereotype.Component;
 

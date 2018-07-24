@@ -1,5 +1,7 @@
-package com.oocl.employeeapi;
+package com.oocl.employeeapi.controller;
 
+import com.oocl.employeeapi.model.Employee;
+import com.oocl.employeeapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

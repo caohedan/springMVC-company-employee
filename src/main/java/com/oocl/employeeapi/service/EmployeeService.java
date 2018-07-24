@@ -1,13 +1,13 @@
-package com.oocl.employeeapi;
-
-import org.springframework.stereotype.Component;
+package com.oocl.employeeapi.service;
+import com.oocl.employeeapi.model.Employee;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class EmployeeService {
     private Map<Long, Employee> employees = new HashMap<>();
 
