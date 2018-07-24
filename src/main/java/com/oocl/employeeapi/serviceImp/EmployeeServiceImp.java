@@ -39,13 +39,13 @@ public class EmployeeServiceImp implements EmployeeService {
 
     public Employee modify(long id, Employee employee) {
         Employee emp = employees.get(id);
-        if(employee.getGender()!=null){
+        if(employee.getGender()!=null && employee.getGender()!=emp.getGender()){
             emp.setGender(employee.getGender());
         }
-        if(employee.getAge()!=0){
+        if(employee.getAge()!=0 && employee.getAge()!=emp.getAge()){
             emp.setAge(employee.getAge());
         }
-        if(employee.getName()!=null){
+        if(employee.getName()!=null && employee.getName()!=emp.getName()){
             emp.setName(employee.getName());
         }
         employees.replace(id, emp);

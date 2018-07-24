@@ -42,4 +42,23 @@ public class EmployeeServiceImpTest {
         assertEquals((long)1, result.get(0).getId());
         assertEquals((long)2, result.get(1).getId());
     }
+
+    @Test
+    public void should_update_employee_when_call_modify(){
+        // given
+        Employee employee1 = mock(Employee.class);
+        Employee employee2 = mock(Employee.class);
+        EmployeeServiceImp employeeServiceImp = new EmployeeServiceImp();
+        when(employee1.getId()).thenReturn((long)1);
+        when(employee1.getName()).thenReturn("unmodify").thenReturn("modified");
+        when(employee2.getName()).thenReturn("modified");
+        employeeServiceImp.add(employee1);
+
+
+        // when
+        employeeServiceImp.modify((long)1, employee2);
+        Employee result = employeeServiceImp.getEmployeeById((long)1);
+                // then
+        assertEquals("modified", result.getName());
+    }
 }
