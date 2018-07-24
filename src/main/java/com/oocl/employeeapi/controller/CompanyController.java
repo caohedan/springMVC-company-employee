@@ -23,7 +23,11 @@ public class CompanyController {
 
     @PostMapping(path="")
     public Company addCompany(@RequestBody Company company){
-        System.out.println(company.toString());
         return companyService.addCompany(company);
+    }
+
+    @GetMapping(path = "/{companyId}")
+    public Company getCompanyById(@PathVariable long companyId){
+        return companyService.getCompanyById(companyId);
     }
 }

@@ -9,4 +9,5 @@ public interface CompanyService {
 
     Company addCompany(Company company);
 
+    Company getCompanyById(long companyId);
 }

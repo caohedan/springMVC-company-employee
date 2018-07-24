@@ -32,7 +32,6 @@ public class CompanyServiceImp implements CompanyService {
             company.setEmployees(employeeService.getEmployeesByCompanyId(id));
             companies.add(company);
         }
-
         return companies;
     }
 
