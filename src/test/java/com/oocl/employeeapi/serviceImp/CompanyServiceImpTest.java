@@ -63,4 +63,21 @@ public class CompanyServiceImpTest {
     // then
         assertEquals((long)1, company1.getId());
     }
+
+    @Test
+    public void should_get_the_employees_when_call_getEmployeesByCompanyId(){
+        // given
+        Company company = mock(Company.class);
+        Employee employee = mock(Employee.class);
+        when(employee.getCompanyId()).thenReturn((long)1);
+        List<Employee> employees = new ArrayList<>();
+        employees.add(employee);
+        when(company.getId()).thenReturn((long)1);
+        when(employeeService.getAllEmployees()).thenReturn(employees);
+        companyServiceImp.addCompany(company);
+        // when
+        List<Employee> employees1 = companyServiceImp.getEmployeesByCompanyId((long)1);
+        // then
+        assertEquals((long)1, employees1.get(0).getCompanyId());
+    }
 }

@@ -57,4 +57,12 @@ public class CompanyServiceImp implements CompanyService {
         company.setEmployees(employees);
         return company;
     }
+
+    public List<Employee> getEmployeesByCompanyId(long id){
+        List<Employee> employees = employeeService.getAllEmployees()
+                .stream()
+                .filter(u ->u.getCompanyId()==id)
+                .collect(Collectors.toList());
+        return employees;
+    }
 }
