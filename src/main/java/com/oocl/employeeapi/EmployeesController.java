@@ -19,9 +19,9 @@ public class EmployeesController {
         return employeeService.add(employee);
     }
 
-    @PostMapping(path="/employees/{id}")
+    @PutMapping(path="/employees/{id}")
     @ResponseBody
-    public Employee addEmployee(@PathVariable long id, @RequestBody Employee employee){
+    public Employee modifyEmployee(@PathVariable long id, @RequestBody Employee employee){
         return employeeService.modify(id, employee);
     }
 
