@@ -16,13 +16,14 @@ public class CompanyController {
 
     private final AtomicLong counter = new AtomicLong();
 
-    @GetMapping("")
+    @GetMapping(path="")
     public List<Company> getCompanies(){
         return companyService.getAllCompanies();
     }
 
-    @PostMapping("")
+    @PostMapping(path="")
     public Company addCompany(@RequestBody Company company){
+        System.out.println(company.toString());
         return companyService.addCompany(company);
     }
 }

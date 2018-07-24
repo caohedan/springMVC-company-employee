@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Service("companyService")
 public class CompanyServiceImp implements CompanyService {
     private Map<Long, Company> companyMap;
+    @Autowired
     private EmployeeService employeeService;
 
     @Autowired
