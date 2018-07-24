@@ -77,7 +77,7 @@ public class EmployeeServiceImp implements EmployeeService {
         return employees;
     }
 
-    public List<Employee> getPage(int page, int size){
+    public List<Employee> getEmployeesPage(int page, int size){
         List<Employee> allEmps = getAllEmployees();
         int totalSize = allEmps.size();
         int preNum = (page-1)*size;

@@ -91,4 +91,19 @@ public class CompanyServiceImp implements CompanyService {
 
         return companyMap.remove(id);
     }
+
+    public List<Company> getCompanyByPage(int page, int size){
+        List<Company> allCompanies = getAllCompanies();
+        int totalSize = allCompanies.size();
+        int preNum = (page-1)*size;
+        if(totalSize <= preNum)
+            return null;
+
+        List<Company> companies = new ArrayList<>();
+        for(int i = preNum; i < totalSize && companies.size()<=size; i++){
+            companies.add(allCompanies.get(i));
+        }
+
+        return companies;
+    }
 }

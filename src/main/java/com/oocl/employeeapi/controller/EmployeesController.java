@@ -57,6 +57,6 @@ public class EmployeesController {
 
     @GetMapping(path="/page/{page}/pageSize/{size}")
     public List<Employee> pageGet(@PathVariable int page, @PathVariable int size){
-        return employeeService.getPage(page, size);
+        return employeeService.getEmployeesPage(page, size);
     }
 }

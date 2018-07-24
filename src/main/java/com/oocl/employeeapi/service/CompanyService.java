@@ -13,4 +13,10 @@ public interface CompanyService {
     Company getCompanyById(long companyId);
 
     List<Employee> getEmployeesByCompanyId(long companyId);
+
+    Company updateCompany(long companyId, Company company);
+
+    Company deleteCompanyAndEmployeesByCompanyId(long companyId);
+
+    List<Company> getCompanyByPage(int page, int size);
 }

@@ -36,4 +36,18 @@ public class CompanyController {
     public List<Employee> getEmployeesByCompanyId(@PathVariable long companyId){
         return companyService.getEmployeesByCompanyId(companyId);
     }
+
+    @PutMapping(path = "/{companyId}")
+    public Company updateCompanyById(@PathVariable long companyId, @RequestBody Company company){
+        return companyService.updateCompany(companyId, company);
+    }
+
+    @DeleteMapping(path = "/{companyId}")
+    public Company deleteCompanyAndEmployeesByCompanyId(@PathVariable long companyId){
+        return companyService.deleteCompanyAndEmployeesByCompanyId(companyId);
+    }
+    @GetMapping(path = "/page/{page}/pageSize/{size}")
+    public List<Company> getCompanyByPageSize(@PathVariable int page, @PathVariable int size){
+        return companyService.getCompanyByPage(page, size);
+    }
 }
