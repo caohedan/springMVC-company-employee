@@ -76,4 +76,19 @@ public class EmployeeServiceImp implements EmployeeService {
 //        return getAllEmployees().stream().filter(u->u.getGender()=="male").collect(Collectors.toList());
         return employees;
     }
+
+    public List<Employee> getPage(int page, int size){
+        List<Employee> allEmps = getAllEmployees();
+        int totalSize = allEmps.size();
+        int preNum = (page-1)*size;
+        if(totalSize <= preNum)
+            return null;
+
+        List<Employee> employees = new ArrayList<>();
+        for(int i = preNum; i < totalSize && employees.size()<=size; i++){
+            employees.add(allEmps.get(i));
+        }
+
+        return employees;
+    }
 }

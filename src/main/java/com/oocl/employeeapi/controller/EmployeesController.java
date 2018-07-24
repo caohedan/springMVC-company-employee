@@ -54,4 +54,9 @@ public class EmployeesController {
     public List<Employee> getMaleEmployees(){
         return employeeService.getMaleEmployees();
     }
+
+    @GetMapping(path="/page/{page}/pageSize/{size}")
+    public List<Employee> pageGet(@PathVariable int page, @PathVariable int size){
+        return employeeService.getPage(page, size);
+    }
 }

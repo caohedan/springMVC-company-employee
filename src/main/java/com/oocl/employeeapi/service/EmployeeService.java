@@ -19,4 +19,6 @@ public interface EmployeeService {
 
     List<Employee> getMaleEmployees();
 
+    List<Employee> getPage(int page, int size);
+
 }
