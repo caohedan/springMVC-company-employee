@@ -61,4 +61,18 @@ public class EmployeeServiceImpTest {
                 // then
         assertEquals("modified", result.getName());
     }
+
+    @Test
+    public void should_delete_employee_when_call_deleteEmployeeById(){
+        // given
+        Employee employee1 = mock(Employee.class);
+        EmployeeServiceImp employeeServiceImp = new EmployeeServiceImp();
+        when(employee1.getId()).thenReturn((long)1);
+        employeeServiceImp.add(employee1);
+        // when
+        employeeServiceImp.deleteEmployeeById((long) 1);
+        List<Employee> result = employeeServiceImp.getAllEmployees();
+        // then
+        assertEquals(null, result);
+    }
 }
