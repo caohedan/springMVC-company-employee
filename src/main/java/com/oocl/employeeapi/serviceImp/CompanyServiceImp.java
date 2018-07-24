@@ -65,4 +65,16 @@ public class CompanyServiceImp implements CompanyService {
                 .collect(Collectors.toList());
         return employees;
     }
+
+    public Company updateCompany(long id, Company company){
+        List<Employee> employees = company.getEmployees();
+
+        companyMap.put(id, company);
+
+        for(Employee employee: employees){
+            employeeService.add(employee);
+        }
+
+        return company;
+    }
 }

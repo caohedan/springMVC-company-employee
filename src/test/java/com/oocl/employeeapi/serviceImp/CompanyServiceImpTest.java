@@ -15,6 +15,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.longThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -79,5 +80,27 @@ public class CompanyServiceImpTest {
         List<Employee> employees1 = companyServiceImp.getEmployeesByCompanyId((long)1);
         // then
         assertEquals((long)1, employees1.get(0).getCompanyId());
+    }
+
+    @Test
+    public void should_update_company_when_call_updateCompany(){
+    // given
+        Employee employee = mock(Employee.class);
+        when(employee.getCompanyId()).thenReturn((long)1);
+        when(employee.getId()).thenReturn((long)0);
+        Company company = mock(Company.class);
+        when(company.getId()).thenReturn((long)1);
+        when(company.getCompanyName()).thenReturn("aaa");
+        Company company1 = mock(Company.class);
+        when(company1.getCompanyName()).thenReturn("bbb");
+
+        List<Employee> employees = new ArrayList<>();
+        employees.add(employee);
+
+        companyServiceImp.addCompany(company);
+        // when
+        companyServiceImp.updateCompany(1, company1);
+    // then
+        assertEquals("bbb", companyServiceImp.getCompanyById((long)1).getCompanyName());
     }
 }
