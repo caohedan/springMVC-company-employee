@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service("companyService")
 public class CompanyServiceImp implements CompanyService {
@@ -44,5 +45,16 @@ public class CompanyServiceImp implements CompanyService {
         }
 
         return companies;
+    }
+
+    public Company getCompanyById(long id){
+        Company company = companyMap.get(id);
+        List<Employee> employees = employeeService.getAllEmployees()
+                                    .stream()
+                                    .filter(u ->u.getCompanyId()==id)
+                                    .collect(Collectors.toList());
+
+        company.setEmployees(employees);
+        return company;
     }
 }
