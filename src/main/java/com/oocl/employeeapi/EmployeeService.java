@@ -38,4 +38,8 @@ public class EmployeeService {
     public Employee modify(long id, Employee employee) {
         return employees.replace(id, employee);
     }
+
+    public Employee deleteEmployeeById(long id) {
+        return employees.remove(id);
+    }
 }
