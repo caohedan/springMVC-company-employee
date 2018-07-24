@@ -1,29 +1,40 @@
 package com.oocl.employeeapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class EmployeesController {
     @Autowired
-    private Employees employees;
+    private EmployeeService employeeService;
+
+    private final AtomicLong counter = new AtomicLong();
 
     @PostMapping(path="/employees")
+    @ResponseBody
     public Employee addEmployee(@RequestBody Employee employee){
-        return employees.add(employee);
+        return employeeService.add(employee);
+    }
+
+    @PostMapping(path="/employees/{id}")
+    @ResponseBody
+    public Employee addEmployee(@PathVariable long id, @RequestBody Employee employee){
+        return employeeService.modify(id, employee);
     }
 
     @GetMapping(path = "/employees")
+    @ResponseBody
     public List<Employee> getAllEmployees(){
-        return employees.getEmployees();
+        return employeeService.getEmployees();
     }
 
     @GetMapping(path = "/employees/{id}")
-    public Employee getEmployeeById(@PathVariable int id){
-        return employees.getEmployeeById(id);
+    @ResponseBody
+    public Employee getEmployeeById(@PathVariable long id){
+        return employeeService.getEmployeeById(id);
     }
 
 }

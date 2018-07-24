@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Employee {
-    private int id;
+    private long id;
     private int age;
     private String name;
     private String gender;
@@ -20,7 +20,7 @@ public class Employee {
         return age;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
