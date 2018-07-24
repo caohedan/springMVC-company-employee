@@ -1,6 +1,7 @@
 package com.oocl.employeeapi.controller;
 
 import com.oocl.employeeapi.model.Company;
+import com.oocl.employeeapi.model.Employee;
 import com.oocl.employeeapi.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,10 @@ public class CompanyController {
     @GetMapping(path = "/{companyId}")
     public Company getCompanyById(@PathVariable long companyId){
         return companyService.getCompanyById(companyId);
+    }
+
+    @GetMapping(path = "/{companyId}/employees")
+    public List<Employee> getEmployeesByCompanyId(@PathVariable long companyId){
+        return companyService.getEmployeesByCompanyId(companyId);
     }
 }
